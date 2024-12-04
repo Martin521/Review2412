@@ -1,0 +1,16 @@
+- show issue (motivation)
+- show RFC
+  - mention possibly contentious
+- show diagram: compilation phases (prepro, lex, wslex, servicelex, parse, postparse, backend)
+  - complications
+    - no preprocessor => late pragma processing
+    - streaming => ruminating regurgitating diagnosticsLogger
+    - #line => show pars.fs/fsy, range.fs
+  - #nowarn in parser not longer possible
+- show WarnScopes.fsi
+- walk through commit 1 diff
+- (if time) walk through WarnScopes.fs ==> rename TempData to LexbufData
+- walk through the other commits
+  - 3: ==> fsi.fs:3695: use tcConfigB.diagnosticsOptions, no need to thread diagnosticsOptions through the function call
+  - 5: (start with SyntaxTrivia.fs)
+  
