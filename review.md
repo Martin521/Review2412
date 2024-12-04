@@ -19,22 +19,21 @@
 ## Background
 
 - [Compilation flow](https://github.com/Martin521/Review2412/blob/main/CompilerFlowChart.md)
-  - [lex.fsl](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/lex.fsl#L1057)
-  - [lex.fs](https://github.com/Martin521/Review2412/blob/12ca289ded0c9fcd490633f168e0343bcf5255a0/fs/lex.fs#L2925)
-  - [pars.fsy](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/pars.fsy#L480)
-  - [pars.fs](https://github.com/Martin521/Review2412/blob/12ca289ded0c9fcd490633f168e0343bcf5255a0/fs/pars.fs#L3172)
+  - [lex.fsl](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/lex.fsl#L1057), [lex.fs](https://github.com/Martin521/Review2412/blob/12ca289ded0c9fcd490633f168e0343bcf5255a0/fs/lex.fs#L2925), [pars.fsy](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/pars.fsy#L480), [pars.fs](https://github.com/Martin521/Review2412/blob/12ca289ded0c9fcd490633f168e0343bcf5255a0/fs/pars.fs#L3172)
 
 - complications
   - no preprocessor => late pragma processing
   - streaming => ruminating error logging (regurgitating diagnosticsLogger)
   - #line => see pars.fs/fsy, [range.fs](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/Utilities/range.fs#L266)
 
-- scoped #nowarn (i.e. anywhere) can no longer be processed in the parser (i.e. integrated in the language grammar)
+- scoped #nowarn (i.e. anywhere) can no longer be processed in the parser (i.e. [integrated](https://github.com/fsharp/fslang-spec/blob/main/releases/FSharp-Spec-4.1.2024-10-02.md#10-namespaces-and-modules) in the language grammar)
   - move to tokenizer (lex.fsl)
+  - store the warn scopes in [DiagnosticsOptions](https://github.com/dotnet/fsharp/blob/main/src/Compiler/Facilities/DiagnosticOptions.fs)
 
 ## PR Review
 
 - [WarnScopes.fsi](https://github.com/dotnet/fsharp/blob/7498b0ba6dd99f6142b4cf3224c1766336abfdb3/src/Compiler/SyntaxTree/WarnScopes.fsi)
+  - ==> fix xml comment in line 17
 - [1: Feature flag, baseline tests and WarnScopes module](https://github.com/dotnet/fsharp/pull/18049/commits/7498b0ba6dd99f6142b4cf3224c1766336abfdb3)
   - ==> remove .fantomasignore "nullness" section
   - [WarnScopes.fs](https://github.com/dotnet/fsharp/blob/7498b0ba6dd99f6142b4cf3224c1766336abfdb3/src/Compiler/SyntaxTree/WarnScopes.fs)

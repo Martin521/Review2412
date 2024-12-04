@@ -21,7 +21,7 @@ graph TB
   PostParse -- AST -->
   B("`Backend
     (type checking, code generation, IL emit)`")
-    --> E[(.exe)]
+    --> E[(.dll)]
   U -- tokens -->
   S["`ServiceLexing
     (adding whitespace details)`"]
