@@ -19,7 +19,7 @@
 ## Background
 
 - [Compilation flow](https://github.com/Martin521/Review2412/blob/main/CompilerFlowChart.md)
-  - [lex.fsl]()
+  - [lex.fsl](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/lex.fsl#L1057)
 
 - complications
   - no preprocessor => late pragma processing
