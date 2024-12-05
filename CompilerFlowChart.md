@@ -11,7 +11,7 @@ graph TB
   T["`Tokenizer
     (lex.fsl -> fslex -> lex.fs)`"]
     -- tokens -->
-  U["`Unlighter
+  U["`Unlightener
     ('LexFilter')`"]
     -- tokens -->
   P["`Parser

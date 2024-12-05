@@ -4,15 +4,18 @@
 
 - A very old feature request ([#278](https://github.com/fsharp/fslang-suggestions/issues/278))
 
+- Many [F# veterans](https://github.com/fsharp/fslang-suggestions/issues/278#issuecomment-386632565) involved
+
 - "Approved in principle", and a first [outline](https://github.com/fsharp/fslang-suggestions/issues/278#issuecomment-429604143) of an approach
 
-- More requests and [use cases](https://github.com/fsharp/fslang-suggestions/issues/278#issuecomment-2265500124) for the feature, and converging discussion
+- More requests and [use cases](https://github.com/fsharp/fslang-suggestions/issues/278#issuecomment-2265500124) for the feature, and converging discussion 
+  - use `#warnon` as the counterpart to `#nowarn`
 
-- A  [RFC PR](https://github.com/fsharp/fslang-design/pull/782) and [discussion](https://github.com/fsharp/fslang-design/discussions/786)
-  - Discussion and convergence on the interaction with `#line` directives
-  - Little feedback otherwise
-  - I still suspect there might be more contentious items in the proposed [RFC](https://github.com/fsharp/fslang-design/blob/72ac047ee990e387caf1a0d76024c49babe9d1e8/drafts/FS-1146-scoped-nowarn.md)
-    - multiline, scripts, diagnostics, surface area / AST changes
+- Team [invites](https://github.com/fsharp/fslang-suggestions/issues/278#issuecomment-2252528175) contributors
+
+- A  [RFC FS-1146 PR](https://github.com/fsharp/fslang-design/pull/782) and [discussion](https://github.com/fsharp/fslang-design/discussions/786)
+  - Little feedback, but there might still be contentious items
+    - multiline, scripts, diagnostics
 
 - PR [#18049](https://github.com/dotnet/fsharp/pull/18049)
 
@@ -26,14 +29,18 @@
   - streaming => ruminating error logging (regurgitating diagnosticsLogger)
   - #line => see pars.fs/fsy, [range.fs](https://github.com/dotnet/fsharp/blob/935b796dc841b6346f655421bb791c1764ab1570/src/Compiler/Utilities/range.fs#L266)
 
-- scoped #nowarn (i.e. anywhere) can no longer be processed in the parser (i.e. [integrated](https://github.com/fsharp/fslang-spec/blob/main/releases/FSharp-Spec-4.1.2024-10-02.md#10-namespaces-and-modules) in the language grammar)
+- scoped #nowarn (as it can be anywhere) can no longer be processed in the parser (i.e. [integrated](https://github.com/fsharp/fslang-spec/blob/main/releases/FSharp-Spec-4.1.2024-10-02.md#10-namespaces-and-modules) in the language grammar)
   - move to tokenizer (lex.fsl)
   - store the warn scopes in [DiagnosticsOptions](https://github.com/dotnet/fsharp/blob/main/src/Compiler/Facilities/DiagnosticOptions.fs)
+  - surface area / AST changes, tooling adaptations
+
+- proposed [RFC](https://github.com/fsharp/fslang-design/blob/72ac047ee990e387caf1a0d76024c49babe9d1e8/drafts/FS-1146-scoped-nowarn.md)
+  
 
 ## PR Review
 
 - [WarnScopes.fsi](https://github.com/dotnet/fsharp/blob/7498b0ba6dd99f6142b4cf3224c1766336abfdb3/src/Compiler/SyntaxTree/WarnScopes.fsi)
-  - ==> fix xml comment in line 17
+
 - [1: Feature flag, baseline tests and WarnScopes module](https://github.com/dotnet/fsharp/pull/18049/commits/7498b0ba6dd99f6142b4cf3224c1766336abfdb3)
   - ==> remove .fantomasignore "nullness" section
   - [WarnScopes.fs](https://github.com/dotnet/fsharp/blob/7498b0ba6dd99f6142b4cf3224c1766336abfdb3/src/Compiler/SyntaxTree/WarnScopes.fs)
